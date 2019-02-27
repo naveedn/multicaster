@@ -4,7 +4,6 @@ An easy way to perform an operation on multiple hosts across environments. Usefu
 
 # Usage
 - changes will replicate from current environemnt "downwards"
-- if you pass in a `include_all_envs` boolean flag, it will update all envs, regardless of whichever env you are currently set at
 
 ```python
 from multicaster.redis_mc import RedisMulticaster
@@ -24,4 +23,21 @@ red.execute('mget', ['fake-1', 'fake-2', 'fake-3'])
 #  {'env': 'dev', 'response': ['L', 'O', 'L']}]
 ```
 
+- if you pass in a `include_all_envs` boolean flag, it will update all envs, regardless of whichever env you are currently set at
 
+```python
+from multicaster.redis_mc import RedisMulticaster
+red = RedisMulticaster(env='dev') # will perform operations only on dev
+
+red.execute('mget', ['fake-1', 'fake-2', 'fake-3'], include_all_envs=True) # this flag overrides and pushes to all envs
+
+## OUTPUT
+# -----> we are overriding and pushing to all envs!
+# -----> executing mget for prod
+# -----> executing mget for staging
+# -----> executing mget for dev
+#
+# [{'env': 'prod', 'response': [None, None, None]},
+#  {'env': 'staging', 'response': ['L', 'O', 'L']},
+#  {'env': 'dev', 'response': ['L', 'O', 'L']}]
+```
