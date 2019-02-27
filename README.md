@@ -15,11 +15,13 @@ red.execute('mset', {{'fake-1': "L", 'fake-2': "O", 'fake-3': "L"}})
 red.execute('mget', ['fake-1', 'fake-2', 'fake-3'])
 
 ## OUTPUT
+# -----> executing mset for staging
+# -----> executing mset for dev
 # -----> executing mget for staging
 # -----> executing mget for dev
 #
-# [{'env': 'staging', 'response': [None, None, None]},
-#  {'env': 'dev', 'response': [None, None, None]}]
+# [{'env': 'staging', 'response': ['L', 'O', 'L']},
+#  {'env': 'dev', 'response': ['L', 'O', 'L']}]
 ```
 
 
