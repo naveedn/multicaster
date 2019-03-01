@@ -41,3 +41,8 @@ red.execute('mget', ['fake-1', 'fake-2', 'fake-3'], include_all_envs=True) # thi
 #  {'env': 'staging', 'response': ['L', 'O', 'L']},
 #  {'env': 'dev', 'response': ['L', 'O', 'L']}]
 ```
+
+
+TODO:
+- allow user to pass in list of envs in constructor (right now, hardcoded to dev, staging, prod only)
+- add exception trace so user can see line number where original exception was thrown
